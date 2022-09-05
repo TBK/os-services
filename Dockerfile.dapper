@@ -1,12 +1,19 @@
-FROM ubuntu:bionic
-# FROM arm64=arm64v8/ubuntu:bionic
+FROM ubuntu:focal
+# FROM arm64=arm64v8/ubuntu:focal
 
-RUN apt-get update && \
-    apt-get install -y curl git wget unzip
+ARG APT_ARCHIVE_SOURCE="archive.ubuntu.com"
+
+RUN sed -i "s|archive.ubuntu.com|${APT_ARCHIVE_SOURCE}|" /etc/apt/sources.list \
+ && apt-get update \
+ && apt-get install -y \
+      curl \
+      git \
+      wget \
+      unzip
 
 ENV DAPPER_ENV VERSION DEV_BUILD
 ENV DAPPER_DOCKER_SOCKET true
-ENV DAPPER_SOURCE /go/src/github.com/rancher/os-images
+ENV DAPPER_SOURCE /go/src/github.com/rancher/os-services
 ENV DAPPER_OUTPUT ./dist
 ENV DAPPER_RUN_ARGS --privileged
 ENV SHELL /bin/bash
@@ -55,7 +62,9 @@ RUN curl -fL ${!DOCKER_URL} > /usr/bin/docker && \
     chmod +x /usr/bin/docker
 
 # Install dapper
-RUN curl -sL https://releases.rancher.com/dapper/latest/dapper-`uname -s`-`uname -m | sed 's/arm.*/arm/'` > /usr/bin/dapper && \
+# sidestep https://github.com/rancher/dapper/issues/92 with v0.5.4
+ARG DAPPER_VERSION="v0.5.4"
+RUN curl -sL https://github.com/rancher/dapper/releases/download/${DAPPER_VERSION}/dapper-$(uname -s)-$(uname -m) > /usr/bin/dapper && \
     chmod +x /usr/bin/dapper
 
 ENTRYPOINT ["./scripts/entry"]
