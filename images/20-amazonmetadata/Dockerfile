@@ -1,9 +1,9 @@
-FROM alpine:3.11
+FROM alpine:3.16
 # FROM arm64=skip arm=skip
 
-RUN apk -Uuv add bash jq ca-certificates groff less python py-pip && \
+RUN apk -Uuv add bash jq ca-certificates groff less python3 py3-pip && \
 	pip install awscli && \
-	apk --purge -v del py-pip && \
+	apk --purge -v del py3-pip && \
 	rm /var/cache/apk/*
 
 ADD ./entry.sh /entry.sh
