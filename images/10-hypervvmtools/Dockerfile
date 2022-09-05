@@ -1,5 +1,6 @@
-FROM gcc:7.4.0 as build-essential
+FROM gcc:10.3.0 as build-essential
 # FROM arm64=skip arm=skip
+
 #RUN apt-get update && \
 #    apt-get install -y --no-install-recommends kmod && \
 #    apt-get clean && \
@@ -20,7 +21,7 @@ RUN wget -q $KERNEL_SRC && \
     cp -a hv_set_ifconfig.sh /dist/scripts/hv_set_ifconfig && \
     cp lsvmbus /dist/bin
 
-FROM debian:stable-slim
+FROM debian:bullseye-slim
 # FROM arm64=skip arm=skip
 
 RUN apt-get update && \
@@ -39,9 +40,8 @@ ENTRYPOINT ["/usr/bin/ros", "entrypoint"]
 
 RUN addgroup --gid 1100 rancher && \
     addgroup --gid 1101 docker && \
-    adduser -q -u 1100 --gid 1100 --shell /bin/bash rancher && \
-    adduser -q -u 1101 --gid 1101 --shell /bin/bash docker && \
-    adduser docker sudo && \
+    useradd -u 1100 -g rancher -G docker,sudo -m -s /bin/bash rancher && \
+    useradd -u 1101 -g docker -G docker,sudo -m -s /bin/bash docker && \
     sed -i 's/rancher:!/rancher:*/g' /etc/shadow && \
     sed -i 's/docker:!/docker:*/g' /etc/shadow && \
     echo '## allow password less for rancher user' >> /etc/sudoers && \
