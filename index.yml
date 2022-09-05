@@ -21,7 +21,7 @@ services:
 - pingan-amc
 consoles:
 - alpine
-- centos
+- rocky
 - debian
 - fedora
 - ubuntu

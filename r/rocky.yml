@@ -1,12 +1,12 @@
 console:
-  image: ${REGISTRY_DOMAIN}/rancher/os-centosconsole:v1.5.5${SUFFIX}
+  image: ${REGISTRY_DOMAIN}/rancher/os-rockyconsole:v1.5.6${SUFFIX}
   command: ros console-init
   privileged: true
   labels:
     io.rancher.os.scope: system
     io.rancher.os.after: network
     io.docker.compose.rebuild: "false"
-    io.rancher.os.console: centos
+    io.rancher.os.console: rocky
   volumes_from:
   - all-volumes
   volumes:
