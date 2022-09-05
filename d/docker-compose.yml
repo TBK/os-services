@@ -1,0 +1,10 @@
+docker-compose:
+  image: ${REGISTRY_DOMAIN}/rancher/os-dockercompose:2.10.2
+  labels:
+    io.rancher.os.scope: system
+    io.rancher.os.after: console
+    io.docker.compose.rebuild: always
+  net: none
+  privileged: true
+  volumes_from:
+  - all-volumes

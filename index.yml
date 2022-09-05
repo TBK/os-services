@@ -19,6 +19,7 @@ services:
 - waagent
 - virtualbox-tools
 - pingan-amc
+- docker-compose
 consoles:
 - alpine
 - rocky
