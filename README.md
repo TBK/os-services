@@ -15,11 +15,11 @@ As a pre-cursor to native multi-arch support, we leverage some features of
 In the Dockerfiles, you'll see lines like:
 
 ```
-FROM rancher/os-centosconsole-base
-# FROM amd64=centos:7 arm64=skip arm=skip
+FROM rancher/os-rockyconsole-base
+# FROM amd64=rocky:8 arm64=skip arm=skip
 ```
 
-The `rancher/os-centosconsole-base` does not actually exist. Dapper will download the
+The `rancher/os-rockyconsole-base` does not actually exist. Dapper will download the
 arch specific image listed in the commented out `# FROM` line, and tag that, so the
 build can occur.
 
