@@ -10,14 +10,15 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
         iptables \
         eject \
         host \
-        python-setuptools \
+        python3-setuptools \
+        python3-distro \
         openssh-server && \
         apt-get clean && rm -rf /var/lib/apt/lists/*
 
 ADD WALinuxAgent.tar.gz .
 
 RUN cd WALinuxAgent-* && \
-    sudo python setup.py install && \
+    sudo python3 setup.py install && \
     cd .. && \
     rm -rf WALinuxAgent-* && \
     rm -rf WALinuxAgent.tar.gz
