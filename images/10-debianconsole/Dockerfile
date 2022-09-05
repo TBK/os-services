@@ -1,5 +1,5 @@
 FROM rancher/os-debianconsole-base
-# FROM amd64=debian:stretch arm64=arm64v8/debian:stretch
+# FROM amd64=debian:bullseye-slim arm64=arm64v8/debian:bullseye-slim
 
 COPY build/sshd_config.append.tpl /etc/ssh/
 
