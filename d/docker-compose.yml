@@ -1,5 +1,5 @@
 docker-compose:
-  image: ${REGISTRY_DOMAIN}/rancher/os-dockercompose:2.10.2
+  image: ${REGISTRY_DOMAIN}/rancher/os-dockercompose:5.1.3
   labels:
     io.rancher.os.scope: system
     io.rancher.os.after: console
