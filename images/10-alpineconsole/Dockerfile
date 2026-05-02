@@ -1,11 +1,11 @@
 FROM rancher/os-alpineconsole-base
-# FROM amd64=alpine:3.16 arm64=arm64v8/alpine:3.16
+# FROM amd64=alpine:3.23 arm64=arm64v8/alpine:3.23
 
 COPY build/sshd_config.append.tpl /etc/ssh/
 
-RUN apk --no-cache add bash openssh iptables rsync sudo \
-                        vim less curl ca-certificates htop \
-                        kmod iproute2 util-linux bash-completion && \
+RUN apk --no-cache add bash openssh openssh-sftp-server iptables rsync sudo \
+                        nano kibi less curl ca-certificates htop \
+                        kmod iproute2 util-linux bash-completion zfs zstd && \
     rm -rf /etc/ssh/*key* && \
     addgroup -g 1100 rancher && \
     addgroup -g 1101 docker && \
