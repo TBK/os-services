@@ -25,12 +25,14 @@ RUN mv /usr/local/lib/libzfs_core.so.3 /usr/local/lib/libzfs_core.so.3.file
 RUN ln -s /usr/local/lib/libzfs_core.so.3.file /usr/local/lib/libzfs_core.so.3
 RUN mv /usr/local/lib/libuutil.so.3 /usr/local/lib/libuutil.so.3.file
 RUN ln -s /usr/local/lib/libuutil.so.3.file /usr/local/lib/libuutil.so.3
-RUN mv /usr/local/lib/libzfs.so.4 /usr/local/lib/libzfs.so.4.file
-RUN ln -s /usr/local/lib/libzfs.so.4.file /usr/local/lib/libzfs.so.4
-RUN mv /usr/local/lib/libzpool.so.4 /usr/local/lib/libzpool.so.4.file
-RUN ln -s /usr/local/lib/libzpool.so.4.file /usr/local/lib/libzpool.so.4
+RUN mv /usr/local/lib/libzfs.so.7 /usr/local/lib/libzfs.so.7.file
+RUN ln -s /usr/local/lib/libzfs.so.7.file /usr/local/lib/libzfs.so.7
+RUN mv /usr/local/lib/libzpool.so.7 /usr/local/lib/libzpool.so.7.file
+RUN ln -s /usr/local/lib/libzpool.so.7.file /usr/local/lib/libzpool.so.7
 RUN mv /usr/local/lib/libzfsbootenv.so.1 /usr/local/lib/libzfsbootenv.so.1.file
 RUN ln -s /usr/local/lib/libzfsbootenv.so.1.file /usr/local/lib/libzfsbootenv.so.1
+
+
 
 ENV PATH=$PATH:/usr/local/lib
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
