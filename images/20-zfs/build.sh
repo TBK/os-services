@@ -31,7 +31,7 @@ ros service up kernel-headers-system-docker
 
 
 # get the zfs source as per https://github.com/zfsonlinux/zfs/wiki/Building-ZFS
-VERSION="2.1.5"
+VERSION="2.4.1"
 curl -sL https://github.com/zfsonlinux/zfs/releases/download/zfs-${VERSION}/zfs-${VERSION}.tar.gz > zfs-${VERSION}.tar.gz
 mkdir -p zfs
 tar zxvf zfs-${VERSION}.tar.gz --strip-components=1 -C zfs
