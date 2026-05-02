@@ -13,4 +13,5 @@ services:
 consoles:
 - alpine
 engines:
+- docker-20.10.17 
 - docker-29.4.2
